@@ -22,7 +22,9 @@ class TaskRepository implements TaskRepositoryInterface
             return $query->where('status', $status);
         })->when($createdAt, function ($query, $createdAt) {
             return $query->whereDate('created_at', $createdAt);
-        })->paginate($perPage ?? 10);
+        })
+            ->orderByDesc('id')
+            ->paginate($perPage ?? 10);
     }
 
     public function create(CreateTaskDTO $taskDTO): Task
