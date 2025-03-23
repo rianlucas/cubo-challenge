@@ -34,16 +34,16 @@ return Application::configure(basePath: dirname(__DIR__))
 
             if ($e instanceof NotFoundHttpException) {
                 return response()->json([
-                    "success" => false,
-                    "error" => "Not Found",
-                    "message" => "Resource not found. Please check the id and try again."
+                    'success' => false,
+                    'error' => 'Not Found',
+                    'message' => 'Resource not found. Please check the id and try again.',
                 ], 404);
             }
 
             return response()->json([
-                "success" => false,
-                "error" => "Internal Server Error",
-                "message" => env('APP_DEBUG') ? $e->getMessage() :  "An error occurred while processing the request. Please try again later."
+                'success' => false,
+                'error' => 'Internal Server Error',
+                'message' => env('APP_DEBUG') ? $e->getMessage() : 'An error occurred while processing the request. Please try again later.',
             ], 500);
         });
     })->create();

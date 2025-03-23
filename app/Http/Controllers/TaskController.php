@@ -15,16 +15,15 @@ class TaskController extends Controller
 {
     public function __construct(
         private TaskService $taskService
-    )
-    {}
+    ) {}
 
     public function findById(int $id)
     {
         $task = $this->taskService->findById($id);
 
         return response()->json([
-            "success" => true,
-            "data" => $task
+            'success' => true,
+            'data' => $task,
         ]);
     }
 
@@ -49,9 +48,10 @@ class TaskController extends Controller
             $taskCreateDTO = CreateTaskDTO::fromRequest($request);
             $taskCreated = $this->taskService->create($taskCreateDTO);
             DB::commit();
+
             return response()->json([
-                "succes" => true,
-                "data" => $taskCreated
+                'succes' => true,
+                'data' => $taskCreated,
             ], 201);
         } catch (\Exception $exception) {
             DB::rollBack();
@@ -63,13 +63,13 @@ class TaskController extends Controller
     {
         try {
             DB::beginTransaction();
-            $taskUpdateDTO  = UpdateTaskDTO::fromRequest($request);
+            $taskUpdateDTO = UpdateTaskDTO::fromRequest($request);
             $this->taskService->update($taskUpdateDTO);
             DB::commit();
 
             return response()->json([
-                "success" => true,
-                "message" => "Task updated successfully"
+                'success' => true,
+                'message' => 'Task updated successfully',
             ]);
         } catch (\Exception $exception) {
             DB::rollBack();
@@ -82,8 +82,8 @@ class TaskController extends Controller
         $this->taskService->delete($id);
 
         return response()->json([
-            "sucess" => true,
-            "message" => "Task deleted successfully"
+            'sucess' => true,
+            'message' => 'Task deleted successfully',
         ]);
     }
 }

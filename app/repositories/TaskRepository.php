@@ -11,7 +11,6 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class TaskRepository implements TaskRepositoryInterface
 {
-
     public function findById(int $id): Task
     {
         return Task::where('id', $id)->firstOrFail();
@@ -19,7 +18,7 @@ class TaskRepository implements TaskRepositoryInterface
 
     public function list(?TaskStatusEnum $status, ?string $createdAt, ?int $perPage): LengthAwarePaginator
     {
-        return Task::when($status, function ($query, $status) {;
+        return Task::when($status, function ($query, $status) {
             return $query->where('status', $status);
         })->when($createdAt, function ($query, $createdAt) {
             return $query->whereDate('created_at', $createdAt);
@@ -31,7 +30,7 @@ class TaskRepository implements TaskRepositoryInterface
         return Task::create([
             'name' => $taskDTO->name,
             'description' => $taskDTO->description,
-            'status' => $taskDTO->status
+            'status' => $taskDTO->status,
         ]);
     }
 
@@ -40,7 +39,7 @@ class TaskRepository implements TaskRepositoryInterface
         return Task::where('id', $taskDTO->id)->update([
             'name' => $taskDTO->name,
             'description' => $taskDTO->description,
-            'status' => $taskDTO->status
+            'status' => $taskDTO->status,
         ]);
     }
 

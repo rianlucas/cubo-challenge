@@ -13,9 +13,7 @@ class UpdateTaskDTO
         public string $name,
         public string $description,
         public TaskStatusEnum $status,
-    )
-    {
-    }
+    ) {}
 
     public function toArray(): array
     {

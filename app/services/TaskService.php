@@ -10,12 +10,9 @@ use App\repositories\interfaces\TaskRepositoryInterface;
 
 class TaskService
 {
-
     public function __construct(
         private readonly TaskRepositoryInterface $taskRepository
-    )
-    {
-    }
+    ) {}
 
     public function findById(int $id): Task
     {
