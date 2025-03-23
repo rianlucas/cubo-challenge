@@ -1,18 +1,28 @@
 services:
   api:
-    build: .
+    build: api
+    container_name: laravel_api
     ports:
       - "8000:8000"
     volumes:
-      - ./:/var/www/html
+      - ./api:/var/www/html
     depends_on:
       - db
+  frontend:
+    build: frontend
+    container_name: nextjs_frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - api
   db:
     image: mysql:8.3
     ports:
       - "3306:3306"
     volumes:
-      - ./docker/mysql:/var/lib/mysql
+      - ./api/docker/mysql:/var/lib/mysql
     environment:
       - MYSQL_DATABASE=api
       - MYSQL_ROOT_PASSWORD=root
