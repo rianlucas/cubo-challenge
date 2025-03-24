@@ -9,7 +9,8 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => 'tasks', 'middleware' => 'auth:sanctum'], function () {
+//Para autenticar as rotas adicione o middleware auth:sanctum. Não está adicionado pois o front não tem suporte para isso.
+Route::group(['prefix' => 'tasks'], function () {
     Route::get('/', [\App\Http\Controllers\TaskController::class, 'list']);
     Route::get('/{id}', [\App\Http\Controllers\TaskController::class, 'findById']);
     Route::post('/', [\App\Http\Controllers\TaskController::class, 'create']);
