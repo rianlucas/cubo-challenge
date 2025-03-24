@@ -39,6 +39,11 @@ Generate key (inside docker container)
 php artisan key:generate
 ```
 
+Migrate and Seed database (inside docker container)
+```
+php artisan migrate:fresh --seed
+```
+
 ## Running Tests
 
 To run tests, run the following command
